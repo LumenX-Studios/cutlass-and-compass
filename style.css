@@ -86,8 +86,8 @@ html.has-custom-cursor select {
 ══════════════════════════════════════════════════════ */
 .intro-zone {
   position: relative;
-  /* 100vh hero + 500vh video scrub (600vh total) */
-  height: 600vh;
+  /* 100vh hero + 380vh video scrub (480vh total) */
+  height: 480vh;
 }
 
 /* VIDEO — pinned behind hero ──────────────────────── */
@@ -462,7 +462,7 @@ footer {
 @media (max-width: 1024px) {
   .intro-zone {
     /* Slightly reduce scroll distance on smaller screens */
-    height: 520vh;
+    height: 420vh;
   }
 
   .about-zone {
