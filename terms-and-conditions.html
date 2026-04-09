@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms &amp; Conditions — Cutlass &amp; Compass LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+SC:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --green      : #004225;
+      --green-dark : #001a0f;
+      --gold       : #D4AF37;
+      --gold-dim   : rgba(212,175,55,.45);
+      --cream      : #F9F6EE;
+      --ink        : #1c1c1a;
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── CUSTOM CURSOR ── */
+    html.has-custom-cursor,
+    html.has-custom-cursor body,
+    html.has-custom-cursor a,
+    html.has-custom-cursor button { cursor: none !important; }
+    .cursor-dot, .cursor-ring {
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; opacity: 0;
+      transform: translate(-50%,-50%);
+      transition: opacity .2s ease; z-index: 10000;
+    }
+    .cursor-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(212,175,55,.95); }
+    .cursor-ring { width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(212,175,55,.6); }
+    .cursor-ring.is-hover { transform: translate(-50%,-50%) scale(1.45); border-color: rgba(212,175,55,.95); }
+    @media (hover: none), (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
+
+    /* ── NAV ── */
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--green-dark);
+      border-bottom-width: 0px;
+      border-bottom-style: none;
+      border-bottom-color: rgba(0, 0, 0, 0);
+      border-image: none;
+      padding: 1.2rem clamp(2rem,6vw,5rem);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Cormorant SC', serif;
+      font-size: clamp(.7rem,1.5vw,.85rem);
+      letter-spacing: .35em; color: var(--gold);
+      text-decoration: none; opacity: .85;
+      display: inline-flex; align-items: center; gap: .55rem;
+      transition: opacity .3s;
+    }
+    .nav-logo-mark { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .nav-logo:hover { opacity: 1; }
+    .nav-back {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .78rem; letter-spacing: .18em;
+      color: rgba(212,175,55,.5); text-decoration: none;
+      display: flex; align-items: center; gap: .5rem;
+      transition: color .3s;
+    }
+    .nav-back:hover { color: var(--gold); }
+    .nav-back::before {
+      content: ''; display: inline-block;
+      width: 18px; height: 1px; background: currentColor;
+      transition: width .3s;
+    }
+    .nav-back:hover::before { width: 26px; }
+
+    /* ── HERO — radial shifts RIGHT to differentiate from privacy page ── */
+    .page-hero {
+      background: var(--green-dark);
+      padding: 9rem clamp(2rem,8vw,6rem) 5rem;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,.25), transparent);
+    }
+    .hero-grain {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+      opacity: .4;
+    }
+    /* Radial on RIGHT side — subtle difference from privacy page */
+    .hero-radial {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 55% 75% at 88% 50%, rgba(0,66,37,.38) 0%, transparent 70%);
+    }
+    .page-hero-inner { position: relative; z-index: 1; max-width: 760px; }
+
+    .hero-eyebrow {
+      font-family: 'Cormorant SC', serif;
+      font-size: clamp(.55rem,1.1vw,.68rem);
+      letter-spacing: 2px; color: var(--gold); opacity: 1;
+      margin-bottom: 1.4rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant SC', serif; font-weight: 400;
+      font-size: clamp(2rem,5vw,3.2rem);
+      letter-spacing: .06em; color: var(--cream);
+      line-height: 1.15; margin-bottom: 1.6rem;
+    }
+    /* ── LAYOUT ── */
+    .page-body {
+      max-width: 1100px; margin: 0 auto;
+      padding: 5rem clamp(2rem,6vw,4rem) 6rem;
+      display: grid; grid-template-columns: 220px 1fr;
+      gap: 0 5rem; align-items: start;
+    }
+
+    /* ── TOC ── */
+    .toc { position: sticky; top: 7.2rem; padding-top: .6rem; }
+    .toc-label {
+      font-family: 'Cormorant SC', serif;
+      font-size: 12px; letter-spacing: .4em;
+      color: var(--ink); font-weight: 500;
+      margin-bottom: 1.2rem;
+    }
+    .toc-list { list-style: none; }
+    .toc-list li { margin-bottom: .5rem; }
+    .toc-list a {
+      font-size: 1.08rem; letter-spacing: .04em;
+      color: rgba(28,28,26,.35); text-decoration: none;
+      display: flex; align-items: center; gap: .6rem;
+      transition: color .3s; line-height: 1.5;
+    }
+    .toc-list a::before {
+      content: ''; display: inline-block;
+      width: 0; height: 1px; background: var(--gold);
+      transition: width .3s; flex-shrink: 0;
+    }
+    .toc-list a:hover, .toc-list a.active { color: var(--ink); }
+    .toc-list a:hover::before, .toc-list a.active::before { width: 14px; }
+
+    /* ── CONTENT ── */
+    .policy-content { min-width: 0; }
+
+    .policy-section {
+      margin-bottom: 4rem; padding-bottom: 4rem;
+      border-bottom: 1px solid rgba(28,28,26,.08);
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .8s ease, transform .8s cubic-bezier(.16,1,.3,1);
+    }
+    .policy-section:last-child { border-bottom: none; }
+    .policy-section.on { opacity: 1; transform: translateY(0); }
+
+    .section-number {
+      font-family: 'Cormorant SC', serif;
+      font-size: 10px; letter-spacing: .4em;
+      color: var(--ink); margin-bottom: .9rem; display: block;
+    }
+    .section-title {
+      font-family: 'Cormorant SC', serif; font-weight: 400;
+      font-size: clamp(1.1rem,2.2vw,1.35rem);
+      letter-spacing: .08em; color: var(--ink);
+      margin-bottom: 1.4rem; line-height: 1.3;
+    }
+    .section-body {
+      font-size: clamp(.92rem,1.7vw,1.05rem);
+      font-weight: 300; line-height: 1.95;
+      letter-spacing: .018em; color: rgba(28,28,26,.7);
+    }
+    .section-body p { margin-bottom: 1.1rem; }
+    .section-body p:last-child { margin-bottom: 0; }
+
+    /* ── USE LIST — unique to T&C ── */
+    .use-list { list-style: none; margin: 1rem 0; }
+    .use-list li {
+      padding: .7rem 0 .7rem 1.6rem;
+      border-bottom: 1px solid rgba(28,28,26,.05);
+      position: relative;
+      font-size: clamp(.9rem,1.6vw,1.02rem);
+      font-weight: 300; line-height: 1.7;
+      color: rgba(28,28,26,.7);
+    }
+    .use-list li:last-child { border-bottom: none; }
+    .use-list li::before {
+      content: '';
+      position: absolute; left: 0; top: 1.1rem;
+      width: 5px; height: 5px;
+      background: var(--gold); opacity: .6;
+      transform: rotate(45deg);
+    }
+
+    /* ── LIABILITY BLOCK — dark green treatment for legal clauses ── */
+    .legal-block {
+      background: rgba(0,66,37,.04);
+      border-left: 2px solid rgba(0,66,37,.25);
+      padding: 1.2rem 1.6rem;
+      margin: 1rem 0;
+      font-size: clamp(.88rem,1.55vw,.98rem);
+      line-height: 1.85; color: rgba(28,28,26,.65);
+    }
+    .legal-block + .legal-block { margin-top: .6rem; }
+
+    /* ── CONTACT BLOCK ── */
+    .contact-block {
+      margin-top: 1.2rem; padding: 1.6rem 2rem;
+      border: 1px solid rgba(212,175,55,.2);
+      background: rgba(212,175,55,.04);
+    }
+    .contact-block p {
+      font-size: clamp(.88rem,1.6vw,1rem);
+      font-weight: 300; line-height: 2;
+      color: rgba(28,28,26,.65); margin: 0;
+    }
+    .contact-block a, .inline-link {
+      color: var(--green); text-decoration: none;
+      border-bottom: 1px solid rgba(0,66,37,.25);
+      transition: border-color .3s, color .3s;
+    }
+    .contact-block a:hover, .inline-link:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ── COMPANY INFO TABLE — unique to T&C ── */
+    .info-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    .info-table tr { border-bottom: 1px solid rgba(28,28,26,.06); }
+    .info-table tr:last-child { border-bottom: none; }
+    .info-table td {
+      padding: .75rem 0;
+      font-size: clamp(.88rem,1.55vw,.98rem);
+      font-weight: 300; line-height: 1.6;
+      color: rgba(28,28,26,.7);
+      vertical-align: top;
+    }
+    .info-table td:first-child {
+      font-style: italic; font-weight: 400;
+      color: rgba(28,28,26,.45);
+      width: 160px; padding-right: 1.5rem; flex-shrink: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--green-dark);
+      border-top: 1px solid rgba(212,175,55,.12);
+      padding: 4rem clamp(2rem,6vw,5rem) 2.5rem;
+    }
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+    }
+    .f-label {
+      display: block; font-family: 'Cormorant SC', serif;
+      font-weight: 600; font-size: .69rem; letter-spacing: .38em;
+      color: var(--gold); margin-bottom: .5rem;
+    }
+    .f-value {
+      font-size: clamp(.72rem,1.35vw,.875rem);
+      line-height: 1.72; color: rgba(211,211,211,1); letter-spacing: .02em;
+    }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(212,175,55,.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-bottom span { font-size: .75rem; color: rgba(249,246,238,1); }
+    .footer-links { display: flex; align-items: center; gap: 2rem; color: rgba(211,211,211,1); }
+    .footer-links a {
+      font-size: .75rem; letter-spacing: .5px;
+      color: rgba(211,211,211,1); text-decoration: none;
+      transition: color .25s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      .page-body { grid-template-columns: 1fr; gap: 0; }
+      .toc { display: none; }
+      .footer-grid { flex-direction: column; gap: 2rem; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: .6rem; }
+      .footer-links { flex-wrap: wrap; gap: .6rem .9rem; }
+      .info-table td:first-child { width: 120px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot" id="js-cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="js-cursor-ring" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav class="top-nav">
+    <a class="nav-logo" href="index.html">
+      <img class="nav-logo-mark" src="logo.svg" alt="" aria-hidden="true">
+      <span>Cutlass &amp; Compass</span>
+    </a>
+    <a class="nav-back" href="index.html">Return to site</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="hero-grain"></div>
+    <div class="hero-radial"></div>
+    <div class="page-hero-inner">
+      <p class="hero-eyebrow">Legal &nbsp;&middot;&nbsp; Cutlass &amp; Compass LLC</p>
+      <h1 class="hero-title">Terms &amp; Conditions</h1>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="page-body">
+
+    <!-- TOC -->
+    <aside class="toc">
+      <p class="toc-label">Contents</p>
+      <ul class="toc-list">
+        <li><a href="#s1">1. Introduction</a></li>
+        <li><a href="#s2">2. About the Website</a></li>
+        <li><a href="#s3">3. Company Information</a></li>
+        <li><a href="#s4">4. Services Description</a></li>
+        <li><a href="#s5">5. Intellectual Property</a></li>
+        <li><a href="#s6">6. Accuracy of Information</a></li>
+        <li><a href="#s7">7. Use of the Website</a></li>
+        <li><a href="#s8">8. Limitation of Liability</a></li>
+        <li><a href="#s9">9. Third-Party Links</a></li>
+        <li><a href="#s10">10. Indemnification</a></li>
+        <li><a href="#s11">11. Severability</a></li>
+        <li><a href="#s12">12. Entire Agreement</a></li>
+        <li><a href="#s13">13. Amendments</a></li>
+        <li><a href="#s14">14. Governing Law</a></li>
+        <li><a href="#s15">15. Contact</a></li>
+      </ul>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="policy-content">
+
+      <div class="policy-section" id="s1">
+        <span class="section-number">01</span>
+        <h2 class="section-title">Introduction</h2>
+        <div class="section-body">
+          <p>These Terms and Conditions govern your use of the website cutlassandcompass.com (the "Website"), operated by Cutlass &amp; Compass LLC (the "Company"), a limited liability company registered in the Cook Islands under registration number LLC16569/2026, with its registered office at T&amp;F Chambers, Nikao, Avarua, Rarotonga, Cook Islands.</p>
+          <p>By accessing or using this Website, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you must discontinue use of the Website immediately.</p>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s2">
+        <span class="section-number">02</span>
+        <h2 class="section-title">About the Website</h2>
+        <div class="section-body">
+          <p>This Website serves as an informational corporate presence for Cutlass &amp; Compass LLC. It provides general information about the Company, its services, and its contact details. The Website does not offer e-commerce functionality, user accounts, interactive forms, or any transactional services.</p>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s3">
+        <span class="section-number">03</span>
+        <h2 class="section-title">Company Information</h2>
+        <div class="section-body">
+          <table class="info-table">
+            <tr><td>Entity Name</td><td>Cutlass &amp; Compass LLC</td></tr>
+            <tr><td>Registration Number</td><td>LLC16569/2026</td></tr>
+            <tr><td>Registered Office</td><td>T&amp;F Chambers, Nikao, Avarua, Rarotonga, Cook Islands</td></tr>
+            <tr><td>Contact</td><td><a class="inline-link" href="mailto:office@cutlassandcompass.com">office@cutlassandcompass.com</a> (email only)</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s4">
+        <span class="section-number">04</span>
+        <h2 class="section-title">Services Description</h2>
+        <div class="section-body">
+          <p>Cutlass &amp; Compass LLC is a design and licensing house specialising in maritime heritage and bespoke textile architecture. The Company provides strategic oversight of upcycled natural luxury textiles and maritime-inspired art, alongside culinary consultancy for the super yacht and land sectors globally.</p>
+          <p>Nothing on this Website constitutes an offer, solicitation, or invitation to enter into any contract or agreement. Any engagement of services is subject to a separate written agreement between the Company and the client.</p>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s5">
+        <span class="section-number">05</span>
+        <h2 class="section-title">Intellectual Property</h2>
+        <div class="section-body">
+          <p>All content on this Website, including but not limited to text, graphics, logos, images, layout, and design, is the property of Cutlass &amp; Compass LLC or its licensors and is protected by applicable intellectual property laws.</p>
+          <p>You may not reproduce, distribute, modify, create derivative works from, publicly display, or otherwise exploit any content from this Website without the prior written consent of the Company.</p>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s6">
+        <span class="section-number">06</span>
+        <h2 class="section-title">Accuracy of Information</h2>
+        <div class="section-body">
+          <p>The Company makes reasonable efforts to ensure that the information on this Website is accurate and up to date. However, the Company makes no representations or warranties, express or implied, that the content on this Website is accurate, complete, reliable, or current.</p>
+          <p>The Company reserves the right to modify, update, or remove any content on this Website at any time without prior notice.</p>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s7">
+        <span class="section-number">07</span>
+        <h2 class="section-title">Use of the Website</h2>
+        <div class="section-body">
+          <p>By using this Website, you agree that you will:</p>
+          <ul class="use-list">
+            <li>Use the Website only for lawful purposes</li>
+            <li>Not attempt to gain unauthorised access to the Website, its servers, or any systems connected to the Website</li>
+            <li>Not use the Website in any way that could damage, disable, or impair the Website or interfere with any other party's use of the Website</li>
+            <li>Not use any automated systems, software, or processes to extract data from the Website</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s8">
+        <span class="section-number">08</span>
+        <h2 class="section-title">Limitation of Liability</h2>
+        <div class="section-body">
+          <p>To the fullest extent permitted by applicable law:</p>
+          <div class="legal-block">
+            The Website and all content are provided on an "as is" and "as available" basis without warranties of any kind, whether express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, or non-infringement.
+          </div>
+          <div class="legal-block">
+            The Company, its members, managers, agents, and affiliates shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, business opportunity, or goodwill, arising out of or in connection with your use of or inability to use this Website, even if the Company has been advised of the possibility of such damages.
+          </div>
+          <div class="legal-block">
+            The Company shall not be liable for any loss or damage arising from events beyond its reasonable control, including but not limited to server failures, internet disruptions, acts of God, or actions of third parties.
+          </div>
+          <div class="legal-block">
+            In no event shall the total aggregate liability of the Company arising out of or related to your use of this Website exceed one hundred United States dollars (USD $100.00).
+          </div>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s9">
+        <span class="section-number">09</span>
+        <h2 class="section-title">Third-Party Links</h2>
+        <div class="section-body">
+          <p>This Website may contain links to third-party websites. These links are provided for convenience only. The Company does not endorse, control, or assume responsibility for the content, privacy policies, or practices of any third-party websites. You access third-party websites entirely at your own risk.</p>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s10">
+        <span class="section-number">10</span>
+        <h2 class="section-title">Indemnification</h2>
+        <div class="section-body">
+          <p>You agree to indemnify, defend, and hold harmless Cutlass &amp; Compass LLC, its members, managers, agents, and affiliates from and against any and all claims, liabilities, damages, losses, costs, and expenses, including reasonable legal fees, arising out of or in connection with your use of this Website or your violation of these Terms and Conditions.</p>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s11">
+        <span class="section-number">11</span>
+        <h2 class="section-title">Severability</h2>
+        <div class="section-body">
+          <p>If any provision of these Terms and Conditions is found to be invalid, illegal, or unenforceable by a court of competent jurisdiction, such invalidity shall not affect the remaining provisions, which shall continue in full force and effect.</p>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s12">
+        <span class="section-number">12</span>
+        <h2 class="section-title">Entire Agreement</h2>
+        <div class="section-body">
+          <p>These Terms and Conditions constitute the entire agreement between you and Cutlass &amp; Compass LLC with respect to your use of this Website and supersede all prior or contemporaneous communications, whether electronic, oral, or written.</p>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s13">
+        <span class="section-number">13</span>
+        <h2 class="section-title">Amendments</h2>
+        <div class="section-body">
+          <p>The Company reserves the right to amend or update these Terms and Conditions at any time. Any changes will be effective immediately upon posting on this Website with an updated effective date. Your continued use of the Website after any amendments constitutes your acceptance of the revised terms.</p>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s14">
+        <span class="section-number">14</span>
+        <h2 class="section-title">Governing Law and Jurisdiction</h2>
+        <div class="section-body">
+          <p>These Terms and Conditions shall be governed by and construed in accordance with the laws of the Cook Islands. Any disputes arising out of or in connection with these Terms and Conditions or your use of this Website shall be subject to the exclusive jurisdiction of the courts of the Cook Islands.</p>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s15">
+        <span class="section-number">15</span>
+        <h2 class="section-title">Contact</h2>
+        <div class="section-body">
+          <p>For any questions regarding these Terms and Conditions, please contact:</p>
+          <div class="contact-block">
+            <p>
+              Cutlass &amp; Compass LLC<br>
+              T&amp;F Chambers, Nikao, Avarua, Rarotonga, Cook Islands<br>
+              Email: <a href="mailto:office@cutlassandcompass.com">office@cutlassandcompass.com</a>
+            </p>
+          </div>
+          <p style="margin-top:1.4rem; font-size:.85rem; color:rgba(28,28,26,.35); letter-spacing:.04em;">Last updated: 8 April 2026.</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <span class="f-label">Entity</span>
+        <p class="f-value">Cutlass &amp; Compass LLC</p>
+      </div>
+      <div>
+        <span class="f-label">Registration</span>
+        <p class="f-value">LLC16569/2026</p>
+      </div>
+      <div>
+        <span class="f-label">Registered Office</span>
+        <p class="f-value">T&amp;F Chambers, Nikao<br>Avarua, Rarotonga<br>Cook Islands</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Cutlass &amp; Compass LLC. All rights reserved.</span>
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="privacy-policy.html">Privacy &amp; Policy</a>
+        <a href="about-us.html">About Us</a>
+        <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+      </nav>
+      <span>Photo: Don Ramey Logan &mdash; CC BY-SA 4.0</span>
+    </div>
+  </footer>
+
+  <script src="cursor.js"></script>
+  <script>
+    /* Scroll reveal */
+    const secObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('on'); secObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.policy-section').forEach(el => secObs.observe(el));
+
+    /* TOC active highlight */
+    const sections = document.querySelectorAll('.policy-section');
+    const tocLinks = document.querySelectorAll('.toc-list a');
+    const tocObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          tocLinks.forEach(a => a.classList.remove('active'));
+          const active = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    sections.forEach(s => tocObs.observe(s));
+  </script>
+
+</body>
+</html>

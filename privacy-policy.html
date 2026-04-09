@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Cutlass &amp; Compass LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+SC:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --green      : #004225;
+      --green-dark : #001a0f;
+      --gold       : #D4AF37;
+      --gold-dim   : rgba(212,175,55,.45);
+      --cream      : #F9F6EE;
+      --ink        : #1c1c1a;
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* Custom cursor (desktop only) */
+    html.has-custom-cursor,
+    html.has-custom-cursor body,
+    html.has-custom-cursor a,
+    html.has-custom-cursor button,
+    html.has-custom-cursor [role="button"],
+    html.has-custom-cursor input,
+    html.has-custom-cursor textarea,
+    html.has-custom-cursor select {
+      cursor: none !important;
+    }
+
+    .cursor-dot,
+    .cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 10000;
+    }
+
+    .cursor-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(212,175,55,.95);
+    }
+
+    .cursor-ring {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,175,55,.6);
+      box-shadow: 0 0 18px rgba(212,175,55,.22);
+    }
+
+    .cursor-ring.is-hover {
+      transform: translate(-50%, -50%) scale(1.45);
+      border-color: rgba(212,175,55,.95);
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      .cursor-dot,
+      .cursor-ring {
+        display: none;
+      }
+    }
+
+    /* ── NAV ── */
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--green-dark);
+      border-bottom-width: 0px;
+      border-bottom-style: none;
+      border-bottom-color: rgba(0, 0, 0, 0);
+      border-image: none;
+      padding: 1.2rem clamp(2rem,6vw,5rem);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Cormorant SC', serif;
+      font-size: clamp(.7rem, 1.5vw, .85rem);
+      letter-spacing: .35em;
+      color: var(--gold);
+      text-decoration: none;
+      opacity: .85;
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      transition: opacity .3s;
+    }
+    .nav-logo-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .nav-logo:hover { opacity: 1; }
+    .nav-back {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .78rem; letter-spacing: .18em;
+      color: rgba(212,175,55,.5);
+      text-decoration: none;
+      display: flex; align-items: center; gap: .5rem;
+      transition: color .3s;
+    }
+    .nav-back:hover { color: var(--gold); }
+    .nav-back::before {
+      content: '';
+      display: inline-block;
+      width: 18px; height: 1px;
+      background: currentColor;
+      transition: width .3s;
+    }
+    .nav-back:hover::before { width: 26px; }
+
+    /* ── HERO BAND ── */
+    .page-hero {
+      background: var(--green-dark);
+      padding: 9rem clamp(2rem,8vw,6rem) 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,.25), transparent);
+    }
+    .hero-grain {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+      opacity: .4;
+    }
+    .hero-radial {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 15% 50%, rgba(0,66,37,.4) 0%, transparent 70%);
+    }
+    .page-hero-inner { position: relative; z-index: 1; max-width: 760px; }
+
+    .hero-eyebrow {
+      font-family: 'Cormorant SC', serif;
+      font-size: clamp(.55rem, 1.1vw, .68rem);
+      letter-spacing: 2px;
+      color: var(--gold); opacity: 1;
+      margin-bottom: 1.4rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant SC', serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: .06em;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 1.6rem;
+    }
+    /* ── TOC SIDEBAR LAYOUT ── */
+    .page-body {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem clamp(2rem,6vw,4rem) 6rem;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0 5rem;
+      align-items: start;
+    }
+
+    /* ── TOC ── */
+    .toc {
+      position: sticky; top: 7.2rem;
+      padding-top: .6rem;
+    }
+    .toc-label {
+      font-family: 'Cormorant SC', serif;
+      font-size: 12px; letter-spacing: .4em;
+      color: rgba(0, 0, 0, 1); opacity: 1;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+    }
+    .toc-list { list-style: none; }
+    .toc-list li { margin-bottom: .5rem; }
+    .toc-list a {
+      font-size: 1.13rem; letter-spacing: .04em;
+      color: rgba(28,28,26,.38);
+      text-decoration: none;
+      display: flex; align-items: center; gap: .6rem;
+      transition: color .3s;
+      line-height: 1.5;
+    }
+    .toc-list a::before {
+      content: '';
+      display: inline-block;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width .3s;
+      flex-shrink: 0;
+    }
+    .toc-list a:hover,
+    .toc-list a.active { color: var(--ink); }
+    .toc-list a:hover::before,
+    .toc-list a.active::before { width: 14px; }
+
+    /* ── CONTENT ── */
+    .policy-content { min-width: 0; }
+
+    .policy-section {
+      margin-bottom: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid rgba(28,28,26,.08);
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .8s ease, transform .8s cubic-bezier(.16,1,.3,1);
+    }
+    .policy-section:last-child { border-bottom: none; }
+    .policy-section.on { opacity: 1; transform: translateY(0); }
+
+    .section-number {
+      font-family: 'Cormorant SC', serif;
+      font-size: 10px; letter-spacing: .4em;
+      color: rgba(0, 0, 0, 1); opacity: 1;
+      margin-bottom: .9rem;
+      display: block;
+    }
+    .section-title {
+      font-family: 'Cormorant SC', serif;
+      font-weight: 400;
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+      letter-spacing: .08em;
+      color: var(--ink);
+      margin-bottom: 1.4rem;
+      line-height: 1.3;
+    }
+    .section-body {
+      font-size: clamp(.92rem, 1.7vw, 1.05rem);
+      font-weight: 300;
+      line-height: 1.95;
+      letter-spacing: .018em;
+      color: rgba(28,28,26,.7);
+    }
+    .section-body p { margin-bottom: 1.1rem; }
+    .section-body p:last-child { margin-bottom: 0; }
+
+    /* Sub-sections */
+    .sub-section { margin-top: 2rem; }
+    .sub-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500; font-style: italic;
+      font-size: clamp(.88rem, 1.6vw, 1rem);
+      letter-spacing: .06em;
+      color: rgba(28,28,26,.55);
+      margin-bottom: .8rem;
+    }
+
+    /* Rights list */
+    .rights-list { list-style: none; margin-top: .5rem; }
+    .rights-list li {
+      display: flex; gap: 1rem;
+      padding: .85rem 0;
+      border-bottom: 1px solid rgba(28,28,26,.06);
+      font-size: clamp(.9rem, 1.6vw, 1.02rem);
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(28,28,26,.7);
+    }
+    .rights-list li:last-child { border-bottom: none; }
+    .right-name {
+      font-weight: 500; font-style: italic;
+      color: var(--ink);
+      min-width: 180px; flex-shrink: 0;
+      font-size: clamp(.88rem, 1.5vw, .98rem);
+    }
+
+    /* Placeholder notice */
+    .placeholder {
+      background: rgba(212,175,55,.05);
+      border-left: 2px solid rgba(212,175,55,.35);
+      padding: 1rem 1.4rem;
+      margin-top: .8rem;
+      font-style: italic;
+      font-size: clamp(.82rem, 1.5vw, .94rem);
+      color: rgba(28,28,26,.65);
+      line-height: 1.7;
+    }
+
+    /* Contact block */
+    .contact-block {
+      margin-top: 1.2rem;
+      padding: 1.6rem 2rem;
+      border: 1px solid rgba(212,175,55,.2);
+      background: rgba(212,175,55,.05);
+      color: rgba(28,28,26,.9);
+    }
+    .contact-block p {
+      font-size: clamp(.88rem, 1.6vw, 1rem);
+      font-weight: 300;
+      line-height: 2;
+      color: rgba(28,28,26,.65);
+      margin: 0;
+    }
+    .contact-block a {
+      color: var(--green);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,66,37,.25);
+      transition: border-color .3s, color .3s;
+    }
+    .contact-block a:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--green-dark);
+      border-top: 1px solid rgba(212,175,55,.12);
+      padding: 4rem clamp(2rem,6vw,5rem) 2.5rem;
+    }
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+    }
+    .f-label {
+      display: block; font-family: 'Cormorant SC', serif;
+      font-weight: 600;
+      font-size: .69rem; letter-spacing: .38em;
+      color: #D4AF37; opacity: 1; margin-bottom: .5rem;
+    }
+    .f-value {
+      font-size: clamp(.72rem,1.35vw,.875rem);
+      line-height: 1.72; color: rgba(211,211,211,1); letter-spacing: .02em;
+    }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(212,175,55,.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-bottom span {
+      font-size: .75rem; letter-spacing: 0;
+      color: rgba(249,246,238,1);
+    }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      color: rgba(211,211,211,1);
+    }
+    .footer-links a {
+      font-size: .75rem;
+      letter-spacing: 0.5px;
+      color: rgba(211,211,211,1);
+      text-decoration: none;
+      transition: color .25s ease;
+    }
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      .page-body {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .toc { display: none; }
+      .right-name { min-width: 130px; }
+      .footer-grid {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: left;
+        align-items: flex-start;
+        gap: .6rem;
+      }
+      .footer-links {
+        flex-wrap: wrap;
+        gap: .6rem .9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor-dot" id="js-cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="js-cursor-ring" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav class="top-nav">
+    <a class="nav-logo" href="index.html">
+      <img class="nav-logo-mark" src="logo.svg" alt="" aria-hidden="true">
+      <span>Cutlass &amp; Compass</span>
+    </a>
+    <a class="nav-back" href="index.html">Return to site</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="hero-grain"></div>
+    <div class="hero-radial"></div>
+    <div class="page-hero-inner">
+      <p class="hero-eyebrow">Legal &nbsp;&middot;&nbsp; Cutlass &amp; Compass LLC</p>
+      <h1 class="hero-title">Privacy Policy</h1>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="page-body">
+
+    <!-- TOC -->
+    <aside class="toc">
+      <p class="toc-label">Contents</p>
+      <ul class="toc-list">
+        <li><a href="#s1">1. Introduction</a></li>
+        <li><a href="#s2">2. Data Controller</a></li>
+        <li><a href="#s3">3. What We Collect</a></li>
+        <li><a href="#s4">4. Purpose &amp; Legal Basis</a></li>
+        <li><a href="#s5">5. Data Sharing</a></li>
+        <li><a href="#s6">6. International Transfers</a></li>
+        <li><a href="#s7">7. Data Retention</a></li>
+        <li><a href="#s8">8. Your Rights</a></li>
+        <li><a href="#s9">9. Children's Privacy</a></li>
+        <li><a href="#s10">10. Security</a></li>
+        <li><a href="#s11">11. Policy Changes</a></li>
+        <li><a href="#s12">12. Contact Us</a></li>
+      </ul>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="policy-content">
+
+      <div class="policy-section" id="s1">
+        <span class="section-number">01</span>
+        <h2 class="section-title">Introduction</h2>
+        <div class="section-body">
+          <p>This Privacy Policy explains how Cutlass &amp; Compass LLC (the "Company," "we," "us," or "our") handles information in connection with your use of the website cutlassandcompass.com (the "Website").</p>
+          <p>Cutlass &amp; Compass LLC is a limited liability company registered in the Cook Islands under registration number LLC16569/2026, with its registered office at T&amp;F Chambers, Nikao, Avarua, Rarotonga, Cook Islands.</p>
+          <p>We are committed to protecting your privacy. This policy outlines what data, if any, is collected when you visit our Website and how it is handled.</p>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s2">
+        <span class="section-number">02</span>
+        <h2 class="section-title">Data Controller</h2>
+        <div class="section-body">
+          <p>The data controller responsible for your data in connection with this Website is:</p>
+          <div class="contact-block">
+            <p>
+              Cutlass &amp; Compass LLC<br>
+              Registration Number: LLC16569/2026<br>
+              Registered Office: T&amp;F Chambers, Nikao, Avarua, Rarotonga, Cook Islands<br>
+              Contact: <a href="mailto:office@cutlassandcompass.com">office@cutlassandcompass.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s3">
+        <span class="section-number">03</span>
+        <h2 class="section-title">What Data We Collect</h2>
+        <div class="section-body">
+          <div class="sub-section">
+            <p class="sub-title">3.1 Actively Collected Data</p>
+            <p>This Website does not currently feature any contact forms, user accounts, sign-up functionality, e-commerce features, or any other mechanism through which you actively submit personal data to us. We do not actively collect any personal information from visitors.</p>
+          </div>
+          <div class="sub-section">
+            <p class="sub-title">3.2 Cookies and Tracking Technologies</p>
+            <p>This Website does not currently use cookies, analytics tools, tracking pixels, or any other tracking technologies. Should this change in the future, this Privacy Policy will be updated accordingly, and appropriate consent mechanisms will be implemented where required by law.</p>
+          </div>
+          <div class="sub-section">
+            <p class="sub-title">3.3 Server Logs and Hosting Data</p>
+            <div class="placeholder">This section will be completed once hosting provider details are confirmed. Information regarding passively collected server log data — such as IP addresses, browser type, access times, and referring URLs — will be detailed here, including the legal basis for processing, retention periods, and the identity and location of the hosting provider.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s4">
+        <span class="section-number">04</span>
+        <h2 class="section-title">Purpose and Legal Basis for Processing</h2>
+        <div class="section-body">
+          <div class="sub-section">
+            <p class="sub-title">4.1 Current Processing Activities</p>
+            <p>As of the effective date of this policy, we do not actively process any personal data through this Website.</p>
+          </div>
+          <div class="sub-section">
+            <p class="sub-title">4.2 Server Log Data</p>
+            <div class="placeholder">This section will be completed alongside Section 3.3 once hosting provider details are confirmed. It will detail the lawful basis under which server log data is processed, which is anticipated to be legitimate interest under Article 6(1)(f) of the GDPR for the purposes of website security and operational stability.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s5">
+        <span class="section-number">05</span>
+        <h2 class="section-title">Data Sharing and Third Parties</h2>
+        <div class="section-body">
+          <p>We do not sell, trade, rent, or otherwise share any personal data with third parties.</p>
+          <div class="sub-section">
+            <p class="sub-title">5.1 Hosting Provider</p>
+            <div class="placeholder">This section will be completed once hosting provider details are confirmed. It will identify the hosting provider, their location, and the applicable data processing relationship, including whether a Data Processing Agreement is in place and whether any data is transferred outside the European Economic Area.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s6">
+        <span class="section-number">06</span>
+        <h2 class="section-title">International Data Transfers</h2>
+        <div class="section-body">
+          <p>The Company is established in the Cook Islands, which is outside the European Economic Area (EEA). Currently, as no personal data is actively collected through this Website, no active international transfers of personal data take place.</p>
+          <div class="sub-section">
+            <p class="sub-title">6.1 Hosting-Related Transfers</p>
+            <div class="placeholder">This section will be completed once hosting provider details are confirmed. It will detail the location of the hosting servers and any applicable safeguards for international data transfers, such as Standard Contractual Clauses (SCCs) or adequacy decisions.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s7">
+        <span class="section-number">07</span>
+        <h2 class="section-title">Data Retention</h2>
+        <div class="section-body">
+          <p>As we do not currently collect personal data actively through this Website, no retention schedule applies to actively collected data.</p>
+          <div class="sub-section">
+            <p class="sub-title">7.1 Server Log Retention</p>
+            <div class="placeholder">This section will be completed once hosting provider details are confirmed. It will specify the retention period for any passively collected server log data.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s8">
+        <span class="section-number">08</span>
+        <h2 class="section-title">Your Rights Under the GDPR</h2>
+        <div class="section-body">
+          <p>If you are located in the European Economic Area, you have the following rights with respect to any personal data we may hold about you:</p>
+          <ul class="rights-list">
+            <li><span class="right-name">Right of Access</span><span>The right to request a copy of the personal data we hold about you.</span></li>
+            <li><span class="right-name">Right to Rectification</span><span>The right to request correction of inaccurate or incomplete personal data.</span></li>
+            <li><span class="right-name">Right to Erasure</span><span>The right to request deletion of your personal data where there is no compelling reason for its continued processing.</span></li>
+            <li><span class="right-name">Right to Restriction</span><span>The right to request that we restrict the processing of your personal data under certain circumstances.</span></li>
+            <li><span class="right-name">Right to Portability</span><span>The right to receive your personal data in a structured, commonly used, and machine-readable format.</span></li>
+            <li><span class="right-name">Right to Object</span><span>The right to object to the processing of your personal data where we are relying on legitimate interest as the legal basis.</span></li>
+            <li><span class="right-name">Right to Withdraw Consent</span><span>Where processing is based on consent, the right to withdraw that consent at any time without affecting prior lawful processing.</span></li>
+            <li><span class="right-name">Right to Complain</span><span>The right to lodge a complaint with a supervisory authority in the EU member state of your habitual residence, place of work, or place of the alleged infringement.</span></li>
+          </ul>
+          <p style="margin-top:1.4rem;">To exercise any of these rights, please contact us at <a href="mailto:office@cutlassandcompass.com" style="color:var(--green);border-bottom:1px solid rgba(0,66,37,.25);text-decoration:none;">office@cutlassandcompass.com</a>. We will respond within one month of receipt, in accordance with the GDPR.</p>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s9">
+        <span class="section-number">09</span>
+        <h2 class="section-title">Children's Privacy</h2>
+        <div class="section-body">
+          <p>This Website is not directed at children under the age of 16, and we do not knowingly collect personal data from children. If you believe that a child has provided us with personal data, please contact us at <a href="mailto:office@cutlassandcompass.com" style="color:var(--green);border-bottom:1px solid rgba(0,66,37,.25);text-decoration:none;">office@cutlassandcompass.com</a> and we will take steps to delete such information.</p>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s10">
+        <span class="section-number">10</span>
+        <h2 class="section-title">Security</h2>
+        <div class="section-body">
+          <p>We are committed to ensuring that any data associated with the operation of this Website is protected. While no active personal data is collected, we take reasonable technical and organisational measures to safeguard the integrity and security of our Website and any data passively processed through hosting infrastructure.</p>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s11">
+        <span class="section-number">11</span>
+        <h2 class="section-title">Changes to This Privacy Policy</h2>
+        <div class="section-body">
+          <p>We reserve the right to update or modify this Privacy Policy at any time. Any changes will be effective immediately upon posting the revised policy on this Website with an updated effective date. We encourage you to review this page periodically to stay informed about how we protect your information.</p>
+        </div>
+      </div>
+
+      <div class="policy-section" id="s12">
+        <span class="section-number">12</span>
+        <h2 class="section-title">Contact Us</h2>
+        <div class="section-body">
+          <p>If you have any questions or concerns about this Privacy Policy or our data handling practices, please contact us at:</p>
+          <div class="contact-block">
+            <p>
+              Cutlass &amp; Compass LLC<br>
+              Registration Number: LLC16569/2026<br>
+              Registered Office: T&amp;F Chambers, Nikao, Avarua, Rarotonga, Cook Islands<br>
+              Email: <a href="mailto:office@cutlassandcompass.com">office@cutlassandcompass.com</a>
+            </p>
+          </div>
+          <p style="margin-top:1.4rem; font-size:.85rem; color:rgba(28,28,26,.7); letter-spacing:.04em;">This Privacy Policy was last updated on 8 April 2026.</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <span class="f-label">Entity</span>
+        <p class="f-value">Cutlass &amp; Compass LLC</p>
+      </div>
+      <div>
+        <span class="f-label">Registration</span>
+        <p class="f-value">LLC16569/2026</p>
+      </div>
+      <div>
+        <span class="f-label">Registered Office</span>
+        <p class="f-value">T&amp;F Chambers, Nikao<br>Avarua, Rarotonga<br>Cook Islands</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Cutlass &amp; Compass LLC. All rights reserved.</span>
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="privacy-policy.html">Privacy &amp; Policy</a>
+        <a href="about-us.html">About Us</a>
+        <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+      </nav>
+      <span>Photo: Don Ramey Logan &mdash; CC BY-SA 4.0</span>
+    </div>
+  </footer>
+
+  <script src="cursor.js"></script>
+  <script>
+    /* Scroll reveal for sections */
+    const secObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('on'); secObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.policy-section').forEach(el => secObs.observe(el));
+
+    /* TOC active highlight */
+    const sections = document.querySelectorAll('.policy-section');
+    const tocLinks = document.querySelectorAll('.toc-list a');
+    const tocObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          tocLinks.forEach(a => a.classList.remove('active'));
+          const active = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    sections.forEach(s => tocObs.observe(s));
+  </script>
+
+</body>
+</html>

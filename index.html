@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cutlass &amp; Compass LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+SC:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div id="veil"></div>
+  <div class="cursor-dot" id="js-cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="js-cursor-ring" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       INTRO ZONE — hero (z:2) sits on top of sticky video (z:1)
+       Hero scrolls away naturally, revealing the video below it.
+  ══════════════════════════════════════════════════════ -->
+  <div class="intro-zone">
+
+    <!-- VIDEO — sticky, stays put while hero scrolls off -->
+    <div class="video-sticky-wrap">
+      <!--
+        Copy your video into the same folder as index.html
+        and set the filename below. e.g. src="sailing.mp4"
+      -->
+      <video
+        class="scroll-video"
+        id="js-scroll-video"
+        src="file.mp4"
+        muted
+        playsinline
+        preload="metadata"
+      ></video>
+      <div class="video-overlay"></div>
+      <div class="video-bar" id="js-video-bar"></div>
+    </div>
+
+    <!-- HERO — absolute at top of intro-zone, scrolls with the page -->
+    <section class="hero">
+      <img
+        class="hero-photo"
+        src="https://upload.wikimedia.org/wikipedia/commons/1/1b/J_Class_Yachts_race_in_Newport_RI_by_Don_Ramey_Logan.jpg"
+        alt="J-Class yachts under full sail"
+      />
+      <div class="hero-overlay"></div>
+      <div class="hero-grain"></div>
+
+      <div class="hero-inner">
+        <div class="seal-wrap" id="js-seal">
+          <svg class="seal-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"
+               role="img" aria-label="Cutlass and Compass LLC institutional seal">
+            <defs>
+              <path id="topArc" d="M 18,100 A 82,82 0 0,1 182,100"/>
+            </defs>
+            <circle cx="100" cy="100" r="91" fill="none" stroke="#D4AF37" stroke-width="1.3"/>
+            <circle cx="100" cy="100" r="85" fill="none" stroke="#D4AF37" stroke-width=".4" opacity=".55"/>
+            <text fill="#D4AF37" font-size="7.8" font-family="'Cormorant SC',serif" letter-spacing="5.2">
+              <textPath href="#topArc" startOffset="50%" text-anchor="middle">
+                CUTLASS  &amp;  COMPASS  LLC
+              </textPath>
+            </text>
+            <circle cx="100" cy="190" r="1.6" fill="#D4AF37" opacity=".5"/>
+            <circle cx="87"  cy="188" r="1"   fill="#D4AF37" opacity=".3"/>
+            <circle cx="113" cy="188" r="1"   fill="#D4AF37" opacity=".3"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#D4AF37" stroke-width=".5" opacity=".3"/>
+            <g transform="rotate(45,100,100)">
+              <path d="M 100,30 C 102.6,66 103.4,96 103.4,119 L 96.6,119 C 96.6,96 97.4,66 100,30 Z" fill="#D4AF37"/>
+              <rect x="88" y="117" width="24" height="4.5" rx="2.2" fill="#D4AF37"/>
+              <rect x="98.4" y="121.5" width="3.2" height="20" rx="1.6" fill="#D4AF37" opacity=".85"/>
+              <circle cx="100" cy="146" r="4.8" fill="#D4AF37"/>
+              <circle cx="100" cy="146" r="1.9" fill="#004225"/>
+            </g>
+            <g transform="rotate(-45,100,100)">
+              <path d="M 100,30 C 102.6,66 103.4,96 103.4,119 L 96.6,119 C 96.6,96 97.4,66 100,30 Z" fill="#D4AF37"/>
+              <rect x="88" y="117" width="24" height="4.5" rx="2.2" fill="#D4AF37"/>
+              <rect x="98.4" y="121.5" width="3.2" height="20" rx="1.6" fill="#D4AF37" opacity=".85"/>
+              <circle cx="100" cy="146" r="4.8" fill="#D4AF37"/>
+              <circle cx="100" cy="146" r="1.9" fill="#004225"/>
+            </g>
+            <polygon points="100,40 103.8,91 100,99 96.2,91" fill="#D4AF37"/>
+            <polygon points="100,36 102.3,43 100,41 97.7,43" fill="#D4AF37"/>
+            <polygon points="100,44 103.5,91 100,99 96.5,91" fill="#D4AF37" transform="rotate(180,100,100)"/>
+            <polygon points="100,44 103.5,91 100,99 96.5,91" fill="#D4AF37" transform="rotate(90,100,100)"/>
+            <polygon points="100,44 103.5,91 100,99 96.5,91" fill="#D4AF37" transform="rotate(270,100,100)"/>
+            <polygon points="100,57 102.5,92 100,99 97.5,92" fill="#D4AF37" opacity=".7" transform="rotate(45,100,100)"/>
+            <polygon points="100,57 102.5,92 100,99 97.5,92" fill="#D4AF37" opacity=".7" transform="rotate(135,100,100)"/>
+            <polygon points="100,57 102.5,92 100,99 97.5,92" fill="#D4AF37" opacity=".7" transform="rotate(225,100,100)"/>
+            <polygon points="100,57 102.5,92 100,99 97.5,92" fill="#D4AF37" opacity=".7" transform="rotate(315,100,100)"/>
+            <circle cx="100" cy="100" r="10"  fill="#004225" stroke="#D4AF37" stroke-width="1.4"/>
+            <circle cx="100" cy="100" r="4.5" fill="#D4AF37"/>
+            <circle cx="100" cy="100" r="2"   fill="#004225"/>
+          </svg>
+        </div>
+
+        <div class="v-rule"   id="js-vrule"></div>
+        <h1 class="wordmark" id="js-wordmark">Cutlass &amp; Compass LLC</h1>
+
+        <div class="tag-row" id="js-tagrow">
+          <div class="tag-line"></div>
+          <div class="tag-diamond"></div>
+          <p class="tagline">Design &amp; Licensing House &nbsp;&middot;&nbsp; Maritime Heritage</p>
+          <div class="tag-diamond"></div>
+          <div class="tag-line"></div>
+        </div>
+      </div>
+
+      <div class="scroll-cue" id="js-cue">
+        <span>Scroll</span>
+        <div class="scroll-cue-line"></div>
+      </div>
+    </section>
+
+  </div>
+  <!-- /intro-zone -->
+
+  <div class="divider"></div>
+
+  <!-- ══════════════ ABOUT ═════════════════════════════════ -->
+  <div class="about-zone" id="js-about-zone">
+    <section class="about">
+      <img src="axe.png" class="about-axe" alt="" aria-hidden="true" />
+      <div class="ornament reveal" id="js-orn">
+        <div class="orn-line"></div>
+        <div class="orn-diamond"></div>
+        <div class="orn-line"></div>
+      </div>
+      <div class="about-body" id="js-about-body">
+        <p>
+          <span class="about-lead">Cutlass &amp; Compass LLC is a design and licensing house
+          specialising in maritime heritage and bespoke textile architecture.</span>
+          <span class="about-follow"> We provide strategic oversight of upcycled natural luxury
+          textiles and maritime-inspired art, alongside culinary consultancy for the super yacht
+          and land sectors globally.</span>
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════ CONTACT ══════════════════════════════ -->
+  <section class="contact">
+    <p class="contact-label reveal"    id="js-clabel">Enquiries</p>
+    <a class="contact-email reveal d1" id="js-cemail"
+       href="mailto:office@cutlassandcompass.com">
+      office@cutlassandcompass.com
+    </a>
+  </section>
+
+  <!-- ══════════════ FOOTER ════════════════════════════════ -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <span class="f-label">Entity</span>
+        <p class="f-value">Cutlass &amp; Compass LLC</p>
+      </div>
+      <div>
+        <span class="f-label">Registration</span>
+        <p class="f-value">LLC16569/2026</p>
+      </div>
+      <div>
+        <span class="f-label">Registered Office</span>
+        <p class="f-value">T&amp;F Chambers, Nikao<br>Avarua, Rarotonga<br>Cook Islands</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Cutlass &amp; Compass LLC. All rights reserved.</span>
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="privacy-policy.html">Privacy &amp; Policy</a>
+        <a href="about-us.html">About Us</a>
+        <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+      </nav>
+      <span>Photo: Don Ramey Logan &mdash; CC BY-SA 4.0</span>
+    </div>
+  </footer>
+
+  <!-- ══════════════ SCRIPT ════════════════════════════════ -->
+  <script src="cursor.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
