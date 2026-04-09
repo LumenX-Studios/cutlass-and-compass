@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Cutlass &amp; Compass LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+SC:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green      : #004225;
+      --green-dark : #001a0f;
+      --gold       : #D4AF37;
+      --cream      : #F9F6EE;
+    }
+    html, body {
+      height: 100%;
+      background: var(--green-dark);
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .wrap {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.6rem;
+    }
+    .code {
+      font-family: 'Cormorant SC', serif;
+      font-size: clamp(5rem, 18vw, 10rem);
+      color: var(--gold);
+      letter-spacing: .12em;
+      line-height: 1;
+      opacity: .18;
+    }
+    .rule {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      opacity: .5;
+    }
+    h1 {
+      font-family: 'Cormorant SC', serif;
+      font-size: clamp(1.2rem, 4vw, 1.9rem);
+      font-weight: 400;
+      letter-spacing: .18em;
+      color: var(--gold);
+    }
+    p {
+      font-size: clamp(.95rem, 2.5vw, 1.15rem);
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(249,246,238,.65);
+      max-width: 34ch;
+    }
+    a.btn {
+      margin-top: .6rem;
+      display: inline-block;
+      padding: .7rem 2.2rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Cormorant SC', serif;
+      font-size: .9rem;
+      letter-spacing: .2em;
+      text-decoration: none;
+      transition: background .25s, color .25s;
+    }
+    a.btn:hover {
+      background: var(--gold);
+      color: var(--green-dark);
+    }
+    .footer-note {
+      font-size: .8rem;
+      letter-spacing: .1em;
+      color: rgba(249,246,238,.25);
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="code">404</div>
+    <div class="rule"></div>
+    <h1>Page Not Found</h1>
+    <p>The page you are looking for may have moved or no longer exists. Let us guide you back.</p>
+    <a href="/" class="btn">Return Home</a>
+    <p class="footer-note">&copy; 2026 Cutlass &amp; Compass LLC</p>
+  </div>
+</body>
+</html>

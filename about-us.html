@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Cutlass &amp; Compass LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+SC:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --green      : #004225;
+      --green-dark : #001a0f;
+      --gold       : #D4AF37;
+      --gold-dim   : rgba(212,175,55,.45);
+      --cream      : #F9F6EE;
+      --ink        : #1c1c1a;
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── CUSTOM CURSOR ── */
+    html.has-custom-cursor,
+    html.has-custom-cursor body,
+    html.has-custom-cursor a,
+    html.has-custom-cursor button,
+    html.has-custom-cursor [role="button"] { cursor: none !important; }
+    
+    .cursor-dot, .cursor-ring {
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; opacity: 0;
+      transform: translate(-50%,-50%);
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 10000;
+    }
+    .cursor-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(212,175,55,.95);
+    }
+    .cursor-ring {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid rgba(212,175,55,.6);
+      box-shadow: 0 0 18px rgba(212,175,55,.22);
+    }
+    .cursor-ring.is-hover {
+      transform: translate(-50%,-50%) scale(1.45);
+      border-color: rgba(212,175,55,.95);
+    }
+    @media (hover: none), (pointer: coarse) {
+      .cursor-dot, .cursor-ring { display: none; }
+    }
+
+    /* ── NAV ── */
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--green-dark);
+      border-bottom-width: 0px;
+      border-bottom-style: none;
+      border-bottom-color: rgba(0, 0, 0, 0);
+      border-image: none;
+      padding: 1.2rem clamp(2rem,6vw,5rem);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Cormorant SC', serif;
+      font-size: clamp(.7rem,1.5vw,.85rem);
+      letter-spacing: .35em; color: var(--gold);
+      text-decoration: none; opacity: .85;
+      display: inline-flex; align-items: center; gap: .55rem;
+      transition: opacity .3s;
+    }
+    .nav-logo-mark {
+      width: 28px; height: 28px; border-radius: 50%;
+      object-fit: cover; flex-shrink: 0;
+    }
+    .nav-logo:hover { opacity: 1; }
+    .nav-back {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .78rem; letter-spacing: .18em;
+      color: rgba(212,175,55,.5); text-decoration: none;
+      display: flex; align-items: center; gap: .5rem;
+      transition: color .3s;
+    }
+    .nav-back:hover { color: var(--gold); }
+    .nav-back::before {
+      content: ''; display: inline-block;
+      width: 18px; height: 1px; background: currentColor;
+      transition: width .3s;
+    }
+    .nav-back:hover::before { width: 26px; }
+
+    /* ── HERO SECTION WITH IMAGE ── */
+    .hero-section {
+      position: relative;
+      height: 85vh;
+      min-height: 600px;
+      max-height: 900px;
+      overflow: hidden;
+      margin-top: 0;
+    }
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(.4) saturate(.8);
+      background-color: unset;
+      background: unset;
+      background-image: none;
+      border-style: solid;
+      border-width: 1px;
+      border-color: rgba(0, 0, 0, 1);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 26, 15, 0.95) 0%,
+        rgba(0, 56, 32, 0.7) 50%,
+        rgba(0, 26, 15, 0.95) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 clamp(2rem,8vw,6rem);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-family: 'Cormorant SC', serif;
+      font-size: clamp(.6rem,1.2vw,.75rem);
+      letter-spacing: .3em;
+      color: var(--gold);
+      opacity: .95;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant SC', serif;
+      font-weight: 400;
+      font-size: clamp(2.5rem,7vw,5rem);
+      letter-spacing: .08em;
+      color: var(--cream);
+      line-height: 100%;
+      margin-bottom: 2rem;
+      max-width: 900px;
+    }
+    .hero-subtitle {
+      font-size: clamp(1.1rem,2vw,1.4rem);
+      letter-spacing: .03em;
+      color: rgba(249,246,238,.85);
+      line-height: 1.6;
+      max-width: 700px;
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    /* ── STORY SECTION ── */
+    .story-section {
+      padding: 7rem clamp(2rem,6vw,4rem);
+      background: var(--cream);
+    }
+    .story-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .story-image-wrap {
+      position: relative;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .story-image-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border: 1px solid var(--gold);
+      opacity: .3;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .story-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .story-image-wrap:hover .story-image {
+      transform: scale(1.05);
+    }
+    .story-content {
+      padding-left: 2rem;
+    }
+    .section-label {
+      font-family: 'Cormorant SC', serif;
+      font-size: .65rem;
+      letter-spacing: .35em;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .section-title {
+      font-family: 'Cormorant SC', serif;
+      font-size: clamp(2rem,4vw,2.8rem);
+      font-weight: 400;
+      letter-spacing: .05em;
+      color: var(--ink);
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+    .story-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: rgba(28,28,26,.8);
+      letter-spacing: .02em;
+      margin-bottom: 1.5rem;
+    }
+    .story-text:last-of-type {
+      margin-bottom: 0;
+    }
+
+    /* ── VALUES SECTION ── */
+    .values-section {
+      background: var(--green-dark);
+      padding: 7rem clamp(2rem,6vw,4rem);
+      position: relative;
+      overflow: hidden;
+    }
+    .values-grain {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+      opacity: .3;
+    }
+    .values-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .values-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+    .values-header .section-label {
+      color: var(--gold);
+    }
+    .values-header .section-title {
+      color: var(--cream);
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+    .value-card {
+      background: rgba(249,246,238,.05);
+      border: 1px solid rgba(212,175,55,.15);
+      padding: 3rem 2.5rem;
+      border-radius: 2px;
+      transition: all .4s ease;
+    }
+    .value-card:hover {
+      background: rgba(249,246,238,.08);
+      border-color: rgba(212,175,55,.3);
+      transform: translateY(-4px);
+    }
+    .value-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1.8rem;
+      opacity: .8;
+    }
+    .value-title {
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.5rem;
+      letter-spacing: .08em;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      font-weight: 400;
+    }
+    .value-description {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(249,246,238,.75);
+      letter-spacing: .02em;
+    }
+
+    /* ── TEAM SECTION ── */
+    .team-section {
+      padding: 7rem clamp(2rem,6vw,4rem);
+      background: var(--cream);
+    }
+    .team-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .team-header {
+      margin-bottom: 5rem;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 4rem 3rem;
+    }
+    .team-member {
+      text-align: center;
+    }
+    .member-photo-wrap {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 2rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(212,175,55,.2);
+      transition: border-color .3s;
+    }
+    .member-photo-wrap:hover {
+      border-color: var(--gold);
+    }
+    .member-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(.3);
+      transition: filter .3s;
+    }
+    .member-photo-wrap:hover .member-photo {
+      filter: grayscale(0);
+    }
+    .member-name {
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.6rem;
+      letter-spacing: .06em;
+      color: var(--ink);
+      margin-bottom: .5rem;
+      font-weight: 400;
+    }
+    .member-title {
+      font-size: 1rem;
+      letter-spacing: .15em;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+      font-size: .85rem;
+    }
+    .member-bio {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(28,28,26,.7);
+      letter-spacing: .02em;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    /* ── MISSION BANNER ── */
+    .mission-banner {
+      position: relative;
+      padding: 6rem clamp(2rem,6vw,4rem);
+      background: var(--green);
+      overflow: hidden;
+    }
+    .mission-radial {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(212,175,55,.08) 0%, transparent 70%);
+    }
+    .mission-content {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .mission-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--cream);
+      letter-spacing: .02em;
+      margin-bottom: 2rem;
+    }
+    .mission-author {
+      font-family: 'Cormorant SC', serif;
+      font-size: 1rem;
+      letter-spacing: .2em;
+      color: var(--gold);
+      opacity: .85;
+    }
+
+    /* ── CONTACT CTA ── */
+    .contact-section {
+      padding: 7rem clamp(2rem,6vw,4rem);
+      background: var(--cream);
+      text-align: center;
+    }
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .contact-title {
+      font-family: 'Cormorant SC', serif;
+      font-size: clamp(2rem,4vw,2.8rem);
+      font-weight: 400;
+      letter-spacing: .05em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .contact-text {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: rgba(28,28,26,.7);
+      margin-bottom: 3rem;
+    }
+    .contact-email {
+      display: inline-block;
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.3rem;
+      letter-spacing: .08em;
+      color: var(--green);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,66,37,.3);
+      padding-bottom: .3rem;
+      transition: all .3s;
+    }
+    .contact-email:hover {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--green-dark);
+      padding: 4rem clamp(2rem,6vw,5rem) 2.5rem;
+      border-top: 1px solid rgba(212,175,55,.12);
+    }
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+    }
+    .f-label {
+      font-family: 'Cormorant SC', serif;
+      font-size: .65rem;
+      letter-spacing: .3em;
+      color: var(--gold);
+      display: block;
+      margin-bottom: .8rem;
+      opacity: 1;
+    }
+    .f-value {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: rgba(249,246,238,.7);
+      letter-spacing: .02em;
+    }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(212,175,55,.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: .92rem;
+      color: rgba(249,246,238,1);
+      letter-spacing: .03em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      color: rgba(211,211,211,1);
+    }
+    .footer-links a {
+      color: rgba(211,211,211,1);
+      text-decoration: none;
+      transition: color .3s;
+    }
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .approach-inline-image { display: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (min-width: 1600px) {
+      .hero-content,
+      .story-container,
+      .values-container,
+      .team-container,
+      .contact-container {
+        max-width: 1320px;
+      }
+      .mission-content { max-width: 980px; }
+      .story-container { gap: 6rem; }
+    }
+
+    @media (max-width: 1200px) {
+      .top-nav { padding: 1rem clamp(1.25rem, 4vw, 2.5rem); }
+      .hero-section { height: 75vh; min-height: 520px; }
+      .story-section,
+      .values-section,
+      .team-section,
+      .contact-section,
+      .mission-banner { padding-left: clamp(1.25rem, 4vw, 2.5rem); padding-right: clamp(1.25rem, 4vw, 2.5rem); }
+      .story-container { gap: 3.5rem; }
+      .story-content { padding-left: 0; }
+      .values-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2.2rem; }
+      .team-grid { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2.8rem 2rem; }
+    }
+
+    @media (max-width: 992px) {
+      .hero-section { margin-top: 0; height: 68vh; min-height: 460px; }
+      .hero-content { padding: 0 1.5rem; }
+      .story-container { grid-template-columns: 1fr; gap: 2.75rem; }
+      .story-image-wrap { max-width: 540px; width: 100%; margin: 0 auto; }
+      .story-content,
+      .story-content.reveal { padding-left: 0 !important; padding-right: 0 !important; }
+      .values-header,
+      .team-header { margin-bottom: 3.2rem; }
+      .value-card { padding: 2.3rem 1.8rem; }
+      .mission-banner { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+      .mission-quote { font-size: clamp(1.8rem, 6vw, 2.4rem); }
+      .footer-grid { gap: 2rem; }
+      .footer-bottom { gap: 1rem; }
+    }
+
+    @media (max-width: 768px) {
+      .top-nav {
+        padding: .85rem 1rem;
+        gap: .75rem;
+      }
+      .nav-logo { letter-spacing: .18em; gap: .35rem; font-size: .63rem; }
+      .nav-logo-mark { width: 24px; height: 24px; }
+      .nav-back { font-size: .67rem; letter-spacing: .11em; }
+      .nav-back::before { width: 12px; }
+
+      .hero-section { margin-top: 0; height: 62vh; min-height: 420px; }
+      .hero-content { padding: 2.2rem 1rem 0; }
+      .hero-subtitle { max-width: 95%; }
+
+      .story-section,
+      .values-section,
+      .team-section,
+      .contact-section { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+      .mission-banner { padding: 4rem 1rem; }
+
+      .values-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; gap: 2.2rem; }
+      .member-photo-wrap { width: 180px; height: 180px; margin-bottom: 1.2rem; }
+      .member-bio { max-width: 100%; }
+      .contact-text { margin-bottom: 2rem; }
+
+      .footer-grid { flex-direction: column; gap: 1.5rem; margin-bottom: 2rem; }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        gap: .7rem;
+      }
+      .footer-links { flex-wrap: wrap; gap: .5rem .9rem; }
+
+      .approach-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+      .approach-image-wrap {
+        display: block;
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+        order: 1;
+      }
+      .approach-content {
+        order: 2;
+        padding-right: 0 !important;
+      }
+      .approach-inline-image { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .top-nav { padding: .75rem .85rem; }
+      .nav-logo span { display: none; }
+      .nav-back { font-size: .62rem; letter-spacing: .09em; }
+
+      .hero-section { min-height: 360px; }
+      .hero-content { padding: 2.8rem .95rem 0; }
+      .hero-eyebrow { margin-bottom: .8rem; }
+      .hero-title { margin-bottom: 1rem; line-height: 1.1; }
+      .hero-subtitle { font-size: 1rem; line-height: 1.5; }
+
+      .story-section,
+      .values-section,
+      .team-section,
+      .contact-section { padding: 3.4rem .95rem; }
+      .mission-banner { padding: 3.2rem .95rem; }
+      .value-card { padding: 1.7rem 1.25rem; }
+      .mission-quote { font-size: clamp(1.45rem, 8vw, 1.9rem); line-height: 1.4; }
+      .contact-email { font-size: 1.08rem; letter-spacing: .05em; }
+      footer { padding: 3rem .95rem 2rem; }
+      .approach-container { gap: 1rem; }
+      .approach-image-wrap {
+        max-width: 320px;
+      }
+      .approach-content .section-title {
+        margin-bottom: 1rem;
+      }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="js-cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="js-cursor-ring" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="top-nav">
+    <a class="nav-logo" href="index.html">
+      <img class="nav-logo-mark" src="logo.svg" alt="" aria-hidden="true">
+      <span>Cutlass &amp; Compass</span>
+    </a>
+    <a class="nav-back" href="index.html">Return to site</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <img 
+      src="yatch.webp" 
+      alt="Maritime heritage and craftsmanship" 
+      class="hero-image"
+    />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">ABOUT CUTLASS &amp; COMPASS</span>
+      <h1 class="hero-title">Where Maritime Heritage Meets Modern Craft</h1>
+      <p class="hero-subtitle">A design and licensing house specializing in maritime heritage and bespoke textile architecture, providing strategic oversight of upcycled natural luxury textiles and maritime-inspired art.</p>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="story-section">
+    <div class="story-container">
+      <div class="story-image-wrap reveal active">
+        <img 
+          src="3rd.png" 
+          alt="Historic J-Class sailing yacht" 
+          class="story-image"
+        />
+      </div>
+      <div class="story-content reveal">
+        <span class="section-label">OUR PHILOSOPHY</span>
+        <h2 class="section-title">Where Tradition Meets Contemporary Luxury</h2>
+        <p class="story-text">
+          At Cutlass &amp; Compass, we believe that the traditions of the sea — craftsmanship, resourcefulness, and an eye for enduring beauty — deserve a place in contemporary luxury.
+        </p>
+        <p class="story-text">
+          Our work sits at the intersection of heritage storytelling and thoughtful design, bringing maritime-inspired aesthetics to discerning clients and partners around the world.
+        </p>
+        <p class="story-text">
+          We operate as a lean, globally minded studio — partnering with artisans, designers, and industry specialists rather than maintaining large-scale infrastructure. This allows us to remain agile, selective, and deeply involved in every project we take on.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="values-section">
+    <div class="values-grain"></div>
+    <div class="values-container">
+      <div class="values-header reveal">
+        <span class="section-label">WHAT WE DO</span>
+        <h2 class="section-title">Creative Direction Across Complementary Disciplines</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <svg class="value-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 40L40 40L40 20L24 8L8 20L8 40Z" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 40V28H32V40" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="24" cy="18" r="2" fill="#D4AF37"/>
+          </svg>
+          <h3 class="value-title">Textile Architecture &amp; Upcycled Luxury</h3>
+          <p class="value-description">We curate and oversee the development of bespoke textile concepts rooted in sustainability and natural materials, giving new life to heritage fabrics and craftsmanship traditions.</p>
+        </div>
+        
+        <div class="value-card reveal">
+          <svg class="value-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 8C15.163 8 8 15.163 8 24C8 32.837 15.163 40 24 40C32.837 40 40 32.837 40 24" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+            <path d="M24 16V24L30 27" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M36 8L40 12L36 16" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3 class="value-title">Maritime-Inspired Art &amp; Design</h3>
+          <p class="value-description">From original works to licensed collections, we champion art that draws on seafaring history, coastal landscapes, and nautical iconography.</p>
+        </div>
+        
+        <div class="value-card reveal">
+          <svg class="value-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 20C12 14.477 16.477 10 22 10H26C31.523 10 36 14.477 36 20V28C36 33.523 31.523 38 26 38H22C16.477 38 12 33.523 12 28V20Z" stroke="#D4AF37" stroke-width="2"/>
+            <path d="M18 20H30" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+            <path d="M18 28H30" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="21" cy="24" r="1.5" fill="#D4AF37"/>
+            <circle cx="27" cy="24" r="1.5" fill="#D4AF37"/>
+          </svg>
+          <h3 class="value-title">Culinary Consultancy</h3>
+          <p class="value-description">We advise private clients, hospitality brands, and super yacht operations on elevated culinary experiences that reflect the same attention to provenance and detail that defines our design work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Approach Section -->
+  <section class="story-section approach-section" style="background: var(--green-dark);">
+    <div class="story-container approach-container" style="grid-template-columns: 1fr 1fr;">
+      <div class="story-content reveal approach-content" style="padding-left: 0; padding-right: 2rem;">
+        <span class="section-label" style="color: var(--gold);">OUR APPROACH</span>
+        <h2 class="section-title" style="color: var(--cream);">Quality, Authenticity, Long-Term Value</h2>
+        <img
+          src="j-class-old.jpg"
+          alt="Historic J-Class sailing yacht"
+          class="story-image approach-inline-image"
+        />
+        <p class="story-text" style="color: rgba(249,246,238,.8);">
+          We operate as a lean, globally minded studio — partnering with artisans, designers, and industry specialists rather than maintaining large-scale infrastructure.
+        </p>
+        <p class="story-text" style="color: rgba(249,246,238,.8);">
+          This allows us to remain agile, selective, and deeply involved in every project we take on. Whether we are advising on a textile collection, licensing a design portfolio, or shaping a culinary programme, our focus is always on quality, authenticity, and long-term value.
+        </p>
+      </div>
+      <div class="story-image-wrap reveal approach-image-wrap">
+        <img 
+          src="j-class-old.jpg" 
+          alt="Historic J-Class sailing yacht" 
+          class="story-image"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Banner -->
+  <section class="mission-banner">
+    <div class="mission-radial"></div>
+    <div class="mission-content reveal">
+      <span class="section-label" style="color: var(--gold); margin-bottom: 2rem;">LOOKING AHEAD</span>
+      <blockquote class="mission-quote">
+        Cutlass &amp; Compass is built for clients and collaborators who value substance over scale. We remain committed to the principles that started us: a reverence for craft, a respect for the sea, and a belief that good design should tell a story worth remembering.
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="contact-section">
+    <div class="contact-container reveal">
+      <h2 class="contact-title">Begin a Conversation</h2>
+      <p class="contact-text">
+        We welcome inquiries from clients, collaborators, and industry partners who share our appreciation for craftsmanship, heritage, and thoughtful design.
+      </p>
+      <a href="mailto:contact@cutlassandcompass.com" class="contact-email">contact@cutlassandcompass.com</a>
+    </div>
+  </section>
+
+  <!-- ══════════════ FOOTER ════════════════════════════════ -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <span class="f-label">Entity</span>
+        <p class="f-value">Cutlass &amp; Compass LLC</p>
+      </div>
+      <div>
+        <span class="f-label">Registration</span>
+        <p class="f-value">LLC16569/2026</p>
+      </div>
+      <div>
+        <span class="f-label">Registered Office</span>
+        <p class="f-value">T&amp;F Chambers, Nikao<br>Avarua, Rarotonga<br>Cook Islands</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Cutlass &amp; Compass LLC. All rights reserved.</span>
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="privacy-policy.html">Privacy &amp; Policy</a>
+        <a href="about-us.html">About Us</a>
+        <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+      </nav>
+      <span>Photo: Don Ramey Logan &mdash; CC BY-SA 4.0</span>
+    </div>
+  </footer>
+
+  <script src="cursor.js"></script>
+  <script>
+    // Scroll Reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    reveals.forEach(el => revealObserver.observe(el));
+  </script>
+
+</body>
+</html>
